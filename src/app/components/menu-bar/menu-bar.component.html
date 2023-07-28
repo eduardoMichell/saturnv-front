@@ -1,0 +1,34 @@
+<mat-toolbar>
+  <button class="menu-button" mat-button [matMenuTriggerFor]="fileMenu">File</button>
+  <mat-menu #fileMenu="matMenu">
+    <input type="file" #fileInputMenu hidden (change)="onFileSelected($event)" />
+    <button mat-menu-item class="option-menu-button"  (click)="fileInputMenu.click()" >
+      <mat-icon>folder_open</mat-icon>
+      Open
+    </button>
+    <button mat-menu-item class="option-menu-button" (click)="downloadFile()">
+    <mat-icon>cloud_download</mat-icon>
+      Download
+    </button>
+  </mat-menu>
+
+  <button class="menu-button" mat-button [matMenuTriggerFor]="settingsMenu">Settings</button>
+  <mat-menu #settingsMenu="matMenu">
+    <button mat-menu-item class="option-menu-button">
+      <mat-icon>lock</mat-icon>
+      None
+    </button>
+  </mat-menu>
+
+  <button class="menu-button" mat-button [matMenuTriggerFor]="helpMenu">Help</button>
+  <mat-menu #helpMenu="matMenu">
+    <button mat-menu-item class="option-menu-button">
+      <mat-icon>help</mat-icon>
+      Help
+    </button>
+    <button mat-menu-item class="option-menu-button">
+      <mat-icon>info</mat-icon>
+      About
+    </button>
+  </mat-menu>
+</mat-toolbar>

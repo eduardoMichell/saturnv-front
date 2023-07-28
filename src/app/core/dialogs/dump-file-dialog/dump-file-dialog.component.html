@@ -1,0 +1,16 @@
+<section>
+    <span>Dump Memory To File</span>
+    <mat-form-field>
+        <mat-label>Dump Format</mat-label>
+        <mat-select [(value)]="type">
+            <mat-option value="binary">Binary</mat-option>
+            <mat-option value="hexadecimal">Hexadecimal</mat-option>
+            <mat-option value="text">Text/Data Segment Window</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button (click)="dumpFile()">Dump To File</button>
+        <button (click)="closeDialog()">Close</button>
+    </div>
+</section>

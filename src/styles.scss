@@ -1,0 +1,26 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'assets/_colors.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: $gray;}
+
+.msg-success {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.msg-error {
+  background-color: #e35e6b;
+  color: #ffffff;
+}
+
+.msg-success {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.msg-warning {
+  background-color: #e3955e;
+  color: #ffffff;
+}
+

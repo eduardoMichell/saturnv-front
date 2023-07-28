@@ -1,0 +1,49 @@
+<div class="container">
+  <!-- <app-menu-bar class="menu-bar"></app-menu-bar> -->
+  
+  <div class="button-card">
+    <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
+    <button (click)="fileInput.click()" matTooltip="Open File"><mat-icon>folder_open</mat-icon></button>
+    <button (click)="downloadFile()" matTooltip="Download File"><mat-icon>cloud_download</mat-icon></button>
+    <button (click)="dumpFile()" style="margin-right: 40px;"[disabled]="assembledCode" matTooltip="Dump File"><mat-icon>insert_drive_file</mat-icon></button>
+
+    <button (click)="assembleCode()" matTooltip="Assemble Code"><mat-icon>build</mat-icon></button>
+    <button (click)="runTheCurrentProgram()" [disabled]="true"><mat-icon>play_arrow</mat-icon></button>
+    <button (click)="runOneStep()" [disabled]="canRunOneStep || canLastStep()"><mat-icon>redo</mat-icon></button>
+    <button (click)="undoLastStep()" [disabled]="true"><mat-icon>undo</mat-icon></button>
+    <button (click)="resetMemoryAndRegisters()" [disabled]="canRunOneStep"><mat-icon>replay</mat-icon></button>
+    <button matTooltip="Help"><mat-icon>help</mat-icon></button>
+  </div>
+  
+  <div class="runtime">
+    <mat-tab-group class="tab-group">
+      <mat-tab label="Edit"> 
+        <ngx-monaco-editor class="code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+      </mat-tab>
+      <mat-tab label="Execute"> 
+        TESTE 
+      </mat-tab>
+    </mat-tab-group>
+  
+    <div class="card">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Number</th>
+          <th>Value</th>
+        </tr>
+        <tr *ngFor="let reg of currentCode.memories.regFile | keyvalue: originalOrder">
+          <td>{{reg.key}}</td>
+          <td>{{reg.key.toString().slice(1)}}</td>
+          <td>{{reg.value}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="display: flex; width: 100%;">
+    <div class="console">
+        {{getConsole()}}
+    </div>
+  </div>
+</div>
