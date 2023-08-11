@@ -5,6 +5,7 @@ import { monacoConfig } from './core/monaco-config';
 import { AppComponent } from './app.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { DumpFileDialogComponent } from './core/dialogs/dump-file-dialog/dump-file-dialog.component';
+import { HelpDialogComponent } from './core/dialogs/help-dialog/help-dialog.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,15 +21,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
-    DumpFileDialogComponent
+    DumpFileDialogComponent,
+    HelpDialogComponent
   ],
   imports: [
     BrowserModule,

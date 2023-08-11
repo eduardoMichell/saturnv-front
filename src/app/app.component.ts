@@ -9,6 +9,8 @@ import { Asm, Code, Memories, Text, Data } from './core/utils/types';
 import { CodeService } from "./services/code-service/code.service";
 import { Subscription } from 'rxjs';
 import { DumpFileDialogComponent } from "./core/dialogs/dump-file-dialog/dump-file-dialog.component";
+import { HelpDialogComponent } from "./core/dialogs/help-dialog/help-dialog.component";
+import { MatTabChangeEvent } from "@angular/material/tabs";
 
 
 @Component({
@@ -22,13 +24,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private codeSubscription: Subscription;
 
+  currentTabIndex: number = 0;
   code: string;
 
   stepBack: any
   text: any = [];
   result: string = "";
   messages: string = "";
-
+  textSegment: any = [];
   assembledCode: boolean = true;
   canRunOneStep: boolean = true;
   canUndoLastStep: boolean = true;
@@ -64,6 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   async assembleCode() {
+    this.currentTabIndex = 1;
     this.convertCode();
     this.currentCode.code = {
       "data": [
@@ -96,6 +100,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.stepBack = this.currentCode;
     await this.apiService.assembleCode(this.currentCode).toPromise().then((res: any) => {
       this.currentCode = this.createAsmObject(res.data);
+      this.textSegment = this.createAsmVisualization();
       console.log(this.currentCode)
       this.canRunOneStep = false;
       this.assembledCode = false;
@@ -171,11 +176,34 @@ export class AppComponent implements OnInit, OnDestroy {
     this.canUndoLastStep = true;
     this.utils.clearConsole();
   }
+  getSelectedIndex(): number {
+    return this.currentTabIndex
+  }
 
+  onTabChange(event: MatTabChangeEvent) {
+    this.currentTabIndex = event.index
+  }
 
+  createAsmVisualization(){
+    const asm = this.currentCode;
+    const visualization = []
+    for(let i = ConstantsInit.PC; i < ConstantsInit.PC + (asm.code.text.basic.length*4); i+=4){
+      visualization.push({
+        code: this.binaryToHexadecimal(asm.memories.instMem[i].code),
+        basic: asm.memories.instMem[i].basic.join(" "),
+        source: asm.memories.instMem[i].source.join(" "),
+        address: this.numberToHexadecimal(i)
+      })
+    }
+    return visualization;
+  }
 
-  codeToHexadecimal(binary: any) {
-    return this.utils.binaryToHexadecimal(binary.code);
+  numberToHexadecimal(number: number){
+    return this.utils.numberToHexadecimal(number);
+  }
+
+  binaryToHexadecimal(binary: any) {
+    return this.utils.binaryToHexadecimal(binary);
   }
 
   getBasic(inst: any) {
@@ -189,6 +217,12 @@ export class AppComponent implements OnInit, OnDestroy {
   async dumpFile() {
     this.dialog.open(DumpFileDialogComponent, {
       data: this.currentCode
+    });
+  }
+
+  help(){
+    this.dialog.open(HelpDialogComponent, {
+      
     });
   }
 
@@ -279,7 +313,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   async onFileSelected(event: any): Promise<void> {
     const code = await this.utils.onFileSelected(event);
-    this.codeService.setCode(code);
+    if(code){ 
+      this.codeService.setCode(code);
+    }
   }
 
   downloadFile() {

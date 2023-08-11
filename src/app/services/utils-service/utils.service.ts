@@ -14,13 +14,13 @@ export class UtilsService {
   }
 
 
-  async onFileSelected(event: any): Promise<string> {
+  async onFileSelected(event: any): Promise<string | null> {
     const file: File = event.target.files[0];
     if (file?.name.split(".")[1] === "asm") {
        return await this.readAsmFile(file);
     } else {
       this.showMessage('Error: Invalid file format. Please provide an .asm file to continue', true)
-      return '';
+      return null;
     }
   }
 
@@ -40,7 +40,19 @@ export class UtilsService {
   }
 
   binaryToHexadecimal(binary: string) {
-    return parseInt(binary, 2).toString(16).toUpperCase()
+    return "0x" + this.addZeros(parseInt(binary, 2).toString(16), 8);
+  }
+
+  numberToHexadecimal(number: number) {
+    return "0x" + this.addZeros(number.toString(16), 8);
+  }
+
+  addZeros (inst: any, quantity: number, number = '0') :string {
+    const increment = quantity - inst.length
+    for (let i = 0; i < increment; i++) {
+      inst = number + inst
+    }
+    return inst
   }
 
   showMessage(msg: string, isError: boolean = false, isWarning: boolean = false): void {

@@ -83,3 +83,21 @@ tr {
 .tab-group{
   width: 100%;
 }
+
+
+.text-segment-table {
+  width: 99%;
+  border-top: 1px solid black;
+}
+.text-segment{
+  margin-top: 2px;
+  width: 99%;
+  border: 1px solid black;
+}
+ 
+::ng-deep .mat-mdc-tab-body-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
