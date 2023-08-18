@@ -89,6 +89,19 @@ tr {
   width: 99%;
   border-top: 1px solid black;
 }
+
+.data-segment-table {
+  width: 99%;
+  border-top: 1px solid black;
+}
+
+.data-segment{
+  margin-top: 2px;
+  width: 99%;
+  border: 1px solid black;
+  overflow: auto;
+  max-height: 300px;
+}
 .text-segment{
   margin-top: 2px;
   width: 99%;

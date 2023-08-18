@@ -32,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
   result: string = "";
   messages: string = "";
   textSegment: any = [];
+  dataSegment: any = [];
   assembledCode: boolean = true;
   canRunOneStep: boolean = true;
   canUndoLastStep: boolean = true;
@@ -42,10 +43,10 @@ export class AppComponent implements OnInit, OnDestroy {
   console: string = "";
 
   constructor(private apiService: ApiService,
-              private utils: UtilsService,
-              private codeService: CodeService,
-              public dialog: MatDialog) {
-    this.currentCode = this.initAsm()
+    private utils: UtilsService,
+    private codeService: CodeService,
+    public dialog: MatDialog) {
+    this.currentCode = this.initAsm();
     this.code = this.codeService.getCode();
     this.codeSubscription = this.codeService.code$.subscribe((newCode) => {
       this.code = newCode;
@@ -62,13 +63,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
-  convertCode() {
+  resetCode() {
     this.currentCode = this.initAsm();
   }
 
   async assembleCode() {
     this.currentTabIndex = 1;
-    this.convertCode();
+    this.resetCode();
     this.currentCode.code = {
       "data": [
         {
@@ -96,11 +97,12 @@ export class AppComponent implements OnInit, OnDestroy {
           ["sw", "x5", "48(x19)"]
         ]
       }
-    },
-      this.stepBack = this.currentCode;
+    }
+    this.stepBack = this.currentCode;
     await this.apiService.assembleCode(this.currentCode).toPromise().then((res: any) => {
       this.currentCode = this.createAsmObject(res.data);
-      this.textSegment = this.createAsmVisualization();
+      this.textSegment = this.createTextSegment();
+      this.dataSegment = this.createDataSegment();
       console.log(this.currentCode)
       this.canRunOneStep = false;
       this.assembledCode = false;
@@ -184,10 +186,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.currentTabIndex = event.index
   }
 
-  createAsmVisualization(){
+  createTextSegment() {
     const asm = this.currentCode;
     const visualization = []
-    for(let i = ConstantsInit.PC; i < ConstantsInit.PC + (asm.code.text.basic.length*4); i+=4){
+    for (let i = ConstantsInit.PC; i < ConstantsInit.PC + (asm.code.text.basic.length * 4); i += 4) {
       visualization.push({
         code: this.binaryToHexadecimal(asm.memories.instMem[i].code),
         basic: asm.memories.instMem[i].basic.join(" "),
@@ -197,8 +199,29 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     return visualization;
   }
+  createDataSegment() {
+    const asm = this.currentCode;
+    const visualization = []
+    for (let i = ConstantsInit.DATAMEM; i < ConstantsInit.DATAMEM + (128 * 4); i += 4) {
+      visualization.push({
+        address: this.numberToHexadecimal(i),
+        value0: this.numberToHexadecimal(asm.memories.dataMem[i]),
+        value4: this.numberToHexadecimal(asm.memories.dataMem[i+4]),
+        value8: this.numberToHexadecimal(asm.memories.dataMem[i+8]),
+        value12: this.numberToHexadecimal(asm.memories.dataMem[i+12]),
+        value16: this.numberToHexadecimal(asm.memories.dataMem[i+16]),
+        value20: this.numberToHexadecimal(asm.memories.dataMem[i+20]),
+        value24: this.numberToHexadecimal(asm.memories.dataMem[i+24]),
+        value28: this.numberToHexadecimal(asm.memories.dataMem[i+28]),
+       })
+      i+=28;
+    }
+    console.log(visualization)
+    return visualization;
+  }
 
-  numberToHexadecimal(number: number){
+
+  numberToHexadecimal(number: number) {
     return this.utils.numberToHexadecimal(number);
   }
 
@@ -220,9 +243,9 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  help(){
+  help() {
     this.dialog.open(HelpDialogComponent, {
-      
+
     });
   }
 
@@ -305,15 +328,16 @@ export class AppComponent implements OnInit, OnDestroy {
     let firstPosition = ConstantsInit.DATAMEM;
     let dataMem: any = {};
     for (let i = 0; i < 128; i++) {
-      dataMem[`"${firstPosition}"`] = 0;
+      dataMem[`${firstPosition}`] = 0;
       firstPosition += 4;
+      
     }
     return dataMem;
   }
 
   async onFileSelected(event: any): Promise<void> {
     const code = await this.utils.onFileSelected(event);
-    if(code){ 
+    if (code) {
       this.codeService.setCode(code);
     }
   }

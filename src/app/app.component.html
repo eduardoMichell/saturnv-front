@@ -43,6 +43,40 @@
             </tbody>
           </table>
         </div>
+        <div class="data-segment">
+          <span>Data Segment</span>
+          <table class="data-segment-table">
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Value(+0)</th>
+                <th>Value(+4)</th>
+                <th>Value(+8)</th>
+                <th>Value(+12)</th>
+                <th>Value(+16)</th>
+                <th>Value(+20)</th>
+                <th>Value(+24)</th>
+                <th>Value(+28)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of dataSegment">
+                <td>{{ row.address }}</td>
+                <td>{{ row.value0 }}</td>
+                <td>{{ row.value4 }}</td>
+                <td>{{ row.value8 }}</td>
+                <td>{{ row.value12 }}</td>
+                <td>{{ row.value16 }}</td>
+                <td>{{ row.value20 }}</td>
+                <td>{{ row.value24 }}</td>
+                <td>{{ row.value28 }}</td>
+
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
         
       </mat-tab>
     </mat-tab-group>
