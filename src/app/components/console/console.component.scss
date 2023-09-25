@@ -1,0 +1,28 @@
+@import '/src/assets/colors';
+
+.console {
+  overflow: auto;
+  background-color: $tertiary;
+  border: 1px solid black;
+  width: 99%;
+  height: 150px;
+  padding: 10px;
+  margin: 10px 4px 4px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.text {
+  color: $letter;
+}
+
+.clear-button {
+  align-self: end;
+  background-color: $orange;
+  color: $letter;
+  width: 60px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+}

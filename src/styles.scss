@@ -2,7 +2,7 @@
 @import 'assets/_colors.scss';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: $gray;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: $primary;}
 
 .msg-success {
   background-color: #28a745;
@@ -22,5 +22,43 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 .msg-warning {
   background-color: #e3955e;
   color: #ffffff;
+}
+
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3A3A3A #EBEBEB;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background-color: none;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: none;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #3A3A3A;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #3A3A3A;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #3A3A3A;
 }
 

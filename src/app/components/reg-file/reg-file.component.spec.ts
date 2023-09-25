@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuBarComponent } from './menu-bar.component';
+import { RegFileComponent } from './reg-file.component';
 
-describe('MenuBarComponent', () => {
-  let component: MenuBarComponent;
-  let fixture: ComponentFixture<MenuBarComponent>;
+describe('RegFileComponent', () => {
+  let component: RegFileComponent;
+  let fixture: ComponentFixture<RegFileComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MenuBarComponent]
+      declarations: [RegFileComponent]
     });
-    fixture = TestBed.createComponent(MenuBarComponent);
+    fixture = TestBed.createComponent(RegFileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,19 @@
+<div class="button-bar">
+  <div class="button-card">
+    <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
+    <button (click)="fileInput.click()" matTooltip="Open File"><mat-icon>folder_open</mat-icon></button>
+    <button (click)="downloadFile()" matTooltip="Download File"><mat-icon>cloud_download</mat-icon></button>
+    <button (click)="dumpFile()" style="margin-right: 40px;" [disabled]="canDump"
+      matTooltip="Dump File"><mat-icon>insert_drive_file</mat-icon></button>
+
+    <button (click)="assembleCode()" matTooltip="Assemble Code"><mat-icon>build</mat-icon></button>
+
+    <button (click)="runEntireProgram()" [disabled]="canRun || isEnd()"><mat-icon>play_arrow</mat-icon></button>
+    <button (click)="runOneStep()" [disabled]="canRun || isEnd()"><mat-icon>redo</mat-icon></button>
+    <button (click)="undoLastStep()" [disabled]="canUndoLastStep()"><mat-icon>undo</mat-icon></button>
+    <button (click)="resetAll()" [disabled]="canRun"><mat-icon>replay</mat-icon></button>
+
+    <button (click)="help()" matTooltip="Help"><mat-icon>help</mat-icon></button>
+</div>
+<!-- <img src="assets/imgs/logos/saturn.png" alt="saturn-logo" class="logo">  -->
+</div>

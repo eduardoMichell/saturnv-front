@@ -10,7 +10,7 @@ export type Code = {
 
 export type Text = {
     source: Array<string[]>,
-    code?: Array<string[]>,
+    machineCode?: Array<string[]>,
     basic: Array<string[]>,
 }
 

@@ -70,19 +70,27 @@ export const monacoConfig: NgxMonacoEditorConfig = {
       )
   
       monaco.editor.defineTheme('rv32i-theme', {
-        base: 'vs',
-        colors: ["#0000FF", "#000000", '#FF00FF', '#00CC33', '#FF0000', '#AACFCF'],
+        base: 'vs-dark',
+        inherit: true,
         rules: [
-          { token: 'instructions', foreground: "#0000FF" },
-          { token: 'identifier', foreground: "#000000" },
-          { token: 'directives', foreground: "#FF00FF" },
+          { token: 'instructions', foreground: "#6a9a9f" },
+          { token: 'identifier', foreground: "#dfdfdf" },
+          { token: 'directives', foreground: "#9c5a91" },
           { token: 'string', foreground: "#00CC33" },
           { token: 'comments', foreground: "#00CC33" },
-          { token: 'registers', foreground: "#FF0000" },
+          { token: 'registers', foreground: "#9d5e57" },
    
-        ]
+ 
+   
+        ],
+        colors: {
+          'editor.foreground': '#dfdfdf',
+          'editor.background': '#292929',
+        }
+        
       })
-  
+
+    
       monaco.languages.registerCompletionItemProvider("rv32i",  {
         provideCompletionItems: function(model: any, position: any) {
           const wordUntil = model.getWordUntilPosition(position);

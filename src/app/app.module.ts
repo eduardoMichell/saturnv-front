@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { monacoConfig } from './core/monaco-config';
 
 import { AppComponent } from './app.component';
-import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { DumpFileDialogComponent } from './core/dialogs/dump-file-dialog/dump-file-dialog.component';
 import { HelpDialogComponent } from './core/dialogs/help-dialog/help-dialog.component';
 
@@ -23,14 +22,21 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ConsoleComponent } from './components/console/console.component';
+import { ButtonBarComponent } from './components/button-bar/button-bar.component';
+import { RegFileComponent } from './components/reg-file/reg-file.component';
+import { RuntimeComponent } from './components/runtime/runtime.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuBarComponent,
     DumpFileDialogComponent,
-    HelpDialogComponent
+    HelpDialogComponent,
+    ConsoleComponent,
+    ButtonBarComponent,
+    RegFileComponent,
+    RuntimeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+@import '/src/assets/colors';
+
+.button-bar{
+    display: flex;
+    align-items: center;   
+}
+
+button {
+    margin: 2px;
+    width: 40px;
+    height: 45px;
+    border: none;
+    color: $white;
+    border-radius: 5px;
+    background: $secondary;
+}
+
+button:disabled {
+    background: rgba(240, 248, 255, 0.73);
+    color: rgba(0, 0, 0, 0.53);
+}
+
+.button-card {
+    display: flex;
+    background: $white;
+    border-radius: 10px;
+    padding: 7px;
+    margin: 15px 0px 15px 15px;
+    align-self: flex-start;
+    background-color: $tertiary;
+}
+.logo {
+    width: 75px;
+    height: 45px;
+}

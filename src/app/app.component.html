@@ -1,85 +1,11 @@
 <div class="container">
-  <!-- <app-menu-bar class="menu-bar"></app-menu-bar> -->
 
-  <div class="button-card">
-    <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
-    <button (click)="fileInput.click()" matTooltip="Open File"><mat-icon>folder_open</mat-icon></button>
-    <button (click)="downloadFile()" matTooltip="Download File"><mat-icon>cloud_download</mat-icon></button>
-    <button (click)="dumpFile()" style="margin-right: 40px;" [disabled]="assembledCode"
-      matTooltip="Dump File"><mat-icon>insert_drive_file</mat-icon></button>
-    <button (click)="assembleCode()" matTooltip="Assemble Code"><mat-icon>build</mat-icon></button>
-    <button (click)="runTheCurrentProgram()" [disabled]="true"><mat-icon>play_arrow</mat-icon></button>
-    <button (click)="runOneStep()" [disabled]="canRunOneStep || canLastStep()"><mat-icon>redo</mat-icon></button>
-    <button (click)="undoLastStep()" [disabled]="true"><mat-icon>undo</mat-icon></button>
-    <button (click)="resetMemoryAndRegisters()" [disabled]="canRunOneStep"><mat-icon>replay</mat-icon></button>
-    <button (click)="help()" matTooltip="Help"><mat-icon>help</mat-icon></button>
-  </div>
+  <app-button-bar style="align-self: flex-start;"></app-button-bar>
 
   <div class="runtime">
-    <mat-tab-group class="tab-group" (selectedTabChange)="onTabChange($event)" [selectedIndex]="getSelectedIndex()"
-      animationDuration="0ms">
-      <mat-tab label="Edit">
-        <ngx-monaco-editor class="code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
-      </mat-tab>
-      <mat-tab label="Execute" class="centered-tab">
-        <div class="text-segment">
-          <span>Text Segment</span>
-          <table class="text-segment-table">
-            <thead>
-              <tr>
-                <th>Address</th>
-                <th>Code</th>
-                <th>Basic</th>
-                <th>Source</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let row of textSegment">
-                <td>{{ row.address }}</td>
-                <td>{{ row.code }}</td>
-                <td>{{ row.basic }}</td>
-                <td>{{ row.source }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="data-segment">
-          <span>Data Segment</span>
-          <table class="data-segment-table">
-            <thead>
-              <tr>
-                <th>Address</th>
-                <th>Value(+0)</th>
-                <th>Value(+4)</th>
-                <th>Value(+8)</th>
-                <th>Value(+12)</th>
-                <th>Value(+16)</th>
-                <th>Value(+20)</th>
-                <th>Value(+24)</th>
-                <th>Value(+28)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let row of dataSegment">
-                <td>{{ row.address }}</td>
-                <td>{{ row.value0 }}</td>
-                <td>{{ row.value4 }}</td>
-                <td>{{ row.value8 }}</td>
-                <td>{{ row.value12 }}</td>
-                <td>{{ row.value16 }}</td>
-                <td>{{ row.value20 }}</td>
-                <td>{{ row.value24 }}</td>
-                <td>{{ row.value28 }}</td>
+     
+      <app-runtime style="flex-grow: 1; width: 80%;"></app-runtime>
 
-                
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        
-      </mat-tab>
-    </mat-tab-group>
 
     <div class="card">
       <table>
@@ -88,7 +14,7 @@
           <th>Number</th>
           <th>Value</th>
         </tr>
-        <tr *ngFor="let reg of currentCode.memories.regFile | keyvalue: originalOrder">
+        <tr *ngFor="let reg of convertedCode.memories.regFile | keyvalue: originalOrder">
           <td>{{reg.key}}</td>
           <td>{{reg.key.toString().slice(1)}}</td>
           <td>{{reg.value}}</td>
@@ -97,9 +23,8 @@
     </div>
   </div>
 
-  <div style="display: flex; width: 100%;">
-    <div class="console">
-      {{getConsole()}}
-    </div>
+  <div class="fixer">
+    <app-console></app-console>
   </div>
+  
 </div>
