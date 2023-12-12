@@ -3,11 +3,12 @@
 .console {
   overflow: auto;
   background-color: $tertiary;
-  border: 1px solid black;
-  width: 99%;
+  border: none;
+  border-radius: 5px;
+  width: 98%;
   height: 150px;
   padding: 10px;
-  margin: 10px 4px 4px 4px;
+  margin: 10px 8px 8px 8px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

@@ -1,7 +1,7 @@
 <mat-tab-group class="tabs" (selectedTabChange)="onTabChange($event)" [selectedIndex]="getSelectedIndex()"
   animationDuration="0ms">
   <mat-tab label="Edit">
-    <div style="height: 630px">
+    <div style="height: 600px">
       <ngx-monaco-editor style="height: 100%"  [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
     </div>
   </mat-tab>

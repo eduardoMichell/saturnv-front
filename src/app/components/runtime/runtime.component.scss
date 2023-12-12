@@ -7,6 +7,8 @@
     min-width: 300px;
     height: 100%;
     color: $letter;
+    border-radius: 5px;
+
 }
 
 
@@ -45,9 +47,13 @@ td {
     text-align: center;
 }
 
-.mat-mdc-tab.mdc-tab { background-color: $secondary; }
+.mat-mdc-tab.mdc-tab {
+    background-color: $secondary;
+    border-radius: 5px;
+}
 
- .mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+.mat-mdc-tab-group,
+.mat-mdc-tab-nav-bar {
     --mdc-tab-indicator-active-indicator-color: #e25c1d;
     --mat-tab-header-active-focus-indicator-color: #e25c1d;
     --mat-tab-header-active-hover-indicator-color: #e25c1d;
@@ -55,10 +61,9 @@ td {
     --mat-tab-header-active-focus-label-text-color: #dfdfdf;
     --mat-tab-header-active-hover-label-text-color: #dfdfdf;
     --mat-tab-header-inactive-label-text-color: #dfdfdf;
-    --mat-tab-header-pagination-icon-color: #dfdfdf;    
+    --mat-tab-header-pagination-icon-color: #dfdfdf;
     --mat-tab-header-inactive-focus-label-text-color: #dfdfdf;
     --mat-tab-header-inactive-hover-label-text-color: #dfdfdf;
     --mat-tab-header-active-ripple-color: transparent;
     --mat-tab-header-inactive-ripple-color: transparent;
-  
-  } 
+}

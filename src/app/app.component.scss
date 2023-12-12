@@ -14,7 +14,7 @@
 .card {
   background-color: $secondary;
   width: 20%;
-  max-height: 656px;
+  max-height: 654px;
   margin-left: 10px;
   flex-basis: 1;
   padding: 10px;
@@ -24,7 +24,7 @@
   overflow: auto;
   color: $letter;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
-
+  border-radius: 5px;
   min-width: 200px;
  
 }
